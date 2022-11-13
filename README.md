@@ -16,3 +16,5 @@ The above line only needs to be ran the first time you start your project. You n
 
 To install on another computer, you should be able to run the following:
 - pip install -r requirements.txt
+
+.gitignore file needs to be created with a python gitignore template from Google. 
