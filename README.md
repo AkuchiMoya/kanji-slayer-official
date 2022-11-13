@@ -56,3 +56,7 @@ Models:
 - blank means empty string. 
 - null means nothing is in the database. It's different than blank. 
 <img width="511" alt="image" src="https://user-images.githubusercontent.com/41487993/201511883-322e67f7-d0d0-4bf8-85e0-0295acce8eb4.png">
+- Foreign keys let you link a table to another table. Foreign keys always need to be passed the on_delete argument which tells Django how to handle what happens when you delete a key. You can do models.CASCADE that means if the other class is deleted, then it will delete both. models.SET_NULL means you will set value of foreign key to NULL, but you need to make sure null=TRUE is an arguement. You can do models.SET_DEFAULT if you have a default set. The simple way is models.CASCADE which means when the other class is deleted, then this one is deleted too. You need to be mindful when you do this. 
+- In the below example, this foreign key lets you have every Lead with its own agent. You could create thousands of Leads in the database with their own agents. 
+<img width="466" alt="image" src="https://user-images.githubusercontent.com/41487993/201512170-96f8dcbc-5fce-4e5c-a44d-ca8f89998e89.png">
+- Django has a built in Users model which is very important and you will use it a lot. You will use this to tie users to your database models and for authentication. 
