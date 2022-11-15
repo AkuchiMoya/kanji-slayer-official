@@ -6,10 +6,19 @@ from .models import Player
 def home_page(request):
     return render(request, "home_page.html")
 
+
 def player_list_page(request):
     players = Player.objects.all()
     context = {
         "players": players
     }
-
     return render(request, "player_list.html", context)
+
+
+def player_profile_page(request, pk):
+    player = Player.objects.get(id=pk)
+    context = {
+        "player": player
+    }
+    return render(request, "player_profile_page.html", context)
+

@@ -7,14 +7,25 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+            .player {
+                padding-top: 10px;
+                padding-buttom: 10px;
+                padding-left: 6px;
+                padding-right: 6px;
+                margin-top: 10px;
+                background-color: #f6f6f6;
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
         <h2>Kanji Slayer Player Listing</h2>
-        <ul>
             {% for player in players %}
-            <li>{{ player }}</li>
+            <div class="player">
+            <a href="/players/{{ player.pk }}">{{ player }}</a>
+            </div>
             {% endfor %}
-        </ul>
         
         <script src="" async defer></script>
     </body>
