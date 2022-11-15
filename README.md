@@ -60,3 +60,9 @@ Models:
 - In the below example, this foreign key lets you have every Lead with its own agent. You could create thousands of Leads in the database with their own agents. 
 <img width="466" alt="image" src="https://user-images.githubusercontent.com/41487993/201512170-96f8dcbc-5fce-4e5c-a44d-ca8f89998e89.png">
 - Django has a built in Users model which is very important and you will use it a lot. You will use this to tie users to your database models and for authentication. 
+
+Model Managers:
+<img width="690" alt="image" src="https://user-images.githubusercontent.com/41487993/201822809-81496cb5-2188-4960-923b-dbd620747ab3.png">
+
+Querysets:
+<img width="818" alt="image" src="https://user-images.githubusercontent.com/41487993/201822751-958ff8be-61b6-4b12-a893-054794d55144.png">
