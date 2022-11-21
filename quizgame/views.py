@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Player
+from .models import Player, HiraganaAnswer
 
 
 def home_page(request):
@@ -22,3 +22,10 @@ def player_profile_page(request, pk):
     }
     return render(request, "player_profile_page.html", context)
 
+
+def hiragana_list_page(request):
+    hiragana = HiraganaAnswer.objects.all()
+    context = {
+        "hiragana": hiragana
+    }
+    return render(request, "hiragana_questions.html", context)
