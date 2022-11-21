@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Player, HiraganaAnswer
+from .models import Player, HiraganaAnswer, HiraganaQuestion
+from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm
 
 
 def home_page(request):
@@ -29,3 +30,37 @@ def hiragana_list_page(request):
         "hiragana": hiragana
     }
     return render(request, "hiragana_questions.html", context)
+
+
+def hiragana_create_question(request):
+    form = HiraganaQuestionModelForm()
+    if request.method == "POST":
+        form = HiraganaQuestionModelForm(request.POST)
+        if form.is_valid():
+            question_text=form.cleaned_data['question_text']
+            HiraganaQuestion.objects.create(
+                question_text=question_text,
+            )
+            return redirect("/hiragana")
+    context = {
+        "form": form
+    }
+    return render(request, "hiragana_create_question.html", context)
+
+
+def hiragana_create_answer(request):
+    form = HiraganaAnswerModelForm()
+    if request.method == "POST":
+        form = HiraganaAnswerModelForm(request.POST)
+        if form.is_valid():
+            hiragana_question=form.cleaned_data['hiragana_question']
+            answer_text=form.cleaned_data['answer_text']
+            HiraganaAnswer.objects.create(
+                hiragana_question=hiragana_question,
+                answer_text=answer_text,
+            )
+            return redirect("/hiragana")
+    context = {
+        "form": form
+    }
+    return render(request, "hiragana_create_answer.html", context)
