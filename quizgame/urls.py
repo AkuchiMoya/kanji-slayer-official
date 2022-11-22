@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home_page, player_list_page, player_profile_page, hiragana_list_page, hiragana_create_question, hiragana_create_answer, player_profile_admin_update
+from .views import home_page, player_list_page, player_profile_page, hiragana_list_page, hiragana_create_question, hiragana_create_answer, player_profile_admin_update, hiragana_delete
 
 app_name = "quizgame"
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('hiragana/', hiragana_list_page),
     path('hiragana/createquestion/', hiragana_create_question),
     path('hiragana/createanswer/', hiragana_create_answer),
+    path('hiragana/<int:pk>/delete', hiragana_delete),
 ]

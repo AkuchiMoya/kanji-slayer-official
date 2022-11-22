@@ -71,3 +71,9 @@ def hiragana_create_answer(request):
         "form": form
     }
     return render(request, "hiragana_create_answer.html", context)
+
+
+def hiragana_delete(request, pk):
+    hiragana_to_delete = HiraganaAnswer.objects.get(hiragana_question_id=pk)
+    hiragana_to_delete.delete()
+    return redirect("/hiragana")

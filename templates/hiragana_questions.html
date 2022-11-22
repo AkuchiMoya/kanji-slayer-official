@@ -26,6 +26,7 @@
             {% for hiragana in hiragana %}
             <div class="hiragana">
                 {{ hiragana }} : {{ hiragana.hiragana_question.question_text }}
+                <a href="/hiragana/{{ hiragana.pk }}/delete">Delete</a>
             </div>
             {% endfor %}
         
