@@ -37,10 +37,7 @@ def hiragana_create_question(request):
     if request.method == "POST":
         form = HiraganaQuestionModelForm(request.POST)
         if form.is_valid():
-            question_text=form.cleaned_data['question_text']
-            HiraganaQuestion.objects.create(
-                question_text=question_text,
-            )
+            form.save()
             return redirect("/hiragana")
     context = {
         "form": form
@@ -53,12 +50,7 @@ def hiragana_create_answer(request):
     if request.method == "POST":
         form = HiraganaAnswerModelForm(request.POST)
         if form.is_valid():
-            hiragana_question=form.cleaned_data['hiragana_question']
-            answer_text=form.cleaned_data['answer_text']
-            HiraganaAnswer.objects.create(
-                hiragana_question=hiragana_question,
-                answer_text=answer_text,
-            )
+            form.save()
             return redirect("/hiragana")
     context = {
         "form": form
