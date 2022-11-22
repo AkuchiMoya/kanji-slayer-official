@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style>
-            .hiragana {
-                padding-top: 10px;
-                padding-buttom: 10px;
-                padding-left: 6px;
-                padding-right: 6px;
-                margin-top: 10px;
-                background-color: #f6f6f6;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <a href="{% url 'quizgame:hiragana-create-question' %}">Step 1: Add a new Hiragana Question</a>
-        <a href="{% url 'quizgame:hiragana-create-answer' %}">Step 2: Configure answer for Hiragana Question</a>
-        <h2>Hiragana Question List</h2>
-            {% for hiragana in hiragana %}
-            <div class="hiragana">
-                Question: {{ hiragana }} Answer: {{ hiragana.hiragana_question.question_text }} - 
-                <a href="{% url 'quizgame:hiragana-delete' hiragana.pk %}">Delete</a>
-            </div>
-            {% endfor %}
-        
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'quizgame:hiragana-create-question' %}">Step 1: Add a new Hiragana Question</a>
+    <a href="{% url 'quizgame:hiragana-create-answer' %}">Step 2: Configure answer for Hiragana Question</a>
+
+    <h2>Hiragana Question List</h2>
+
+        {% for hiragana in hiragana %}
+        <div class="hiragana">
+            Question: {{ hiragana }} Answer: {{ hiragana.hiragana_question.question_text }} - 
+            <a href="{% url 'quizgame:hiragana-delete' hiragana.pk %}">Delete</a>
+        </div>
+        {% endfor %}
+{% endblock content %}

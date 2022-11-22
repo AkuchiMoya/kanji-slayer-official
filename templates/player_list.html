@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style>
-            .player {
-                padding-top: 10px;
-                padding-buttom: 10px;
-                padding-left: 6px;
-                padding-right: 6px;
-                margin-top: 10px;
-                background-color: #f6f6f6;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>Kanji Slayer Player Listing</h2>
-            {% for player in players %}
-            <div class="player">
-            <a href="{% url 'quizgame:player-profile-page' player.pk %}">{{ player }}</a>
-            <a href="{% url 'quizgame:player-profile-admin-update' player.pk %}">Admin only: Edit player</a>
-            Level: {{ player.level }}
-            XP: {{ player.xp }}
-            </div>
-            {% endfor %}
-        
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Kanji Slayer Player Listing</h2>
+    
+    {% for player in players %}
+    <div class="player">
+    <a href="{% url 'quizgame:player-profile-page' player.pk %}">{{ player }}</a>
+    <a href="{% url 'quizgame:player-profile-admin-update' player.pk %}">Admin only: Edit player</a>
+    Level: {{ player.level }}
+    XP: {{ player.xp }}
+    </div>
+    {% endfor %}
+{% endblock content %}
