@@ -24,6 +24,7 @@
             {% for player in players %}
             <div class="player">
             <a href="/players/{{ player.pk }}">{{ player }}</a>
+            <a href="/players/{{ player.pk }}/adminedit">Admin only: Edit player</a>
             </div>
             {% endfor %}
         

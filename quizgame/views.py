@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Player, HiraganaAnswer, HiraganaQuestion
-from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm
+from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm, PlayerModelForm
 
 
 def home_page(request):
@@ -22,6 +22,21 @@ def player_profile_page(request, pk):
         "player": player
     }
     return render(request, "player_profile_page.html", context)
+
+
+def player_profile_admin_update(request, pk):
+    player = Player.objects.get(id=pk)
+    form = PlayerModelForm(instance=player)
+    if request.method == "POST":
+        form = PlayerModelForm(request.POST, instance=player)
+        if form.is_valid():
+            form.save()
+            return redirect("/players")
+    context = {
+        "form": form,
+        "player": player,
+    }
+    return render(request, "player_profile_admin_update.html", context)
 
 
 def hiragana_list_page(request):

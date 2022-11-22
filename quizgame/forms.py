@@ -1,5 +1,5 @@
 from django import forms
-from .models import HiraganaAnswer, HiraganaQuestion
+from .models import HiraganaAnswer, HiraganaQuestion, Player
 
 class HiraganaQuestionModelForm(forms.ModelForm):
     class Meta:
@@ -7,6 +7,7 @@ class HiraganaQuestionModelForm(forms.ModelForm):
         fields = (
             'question_text',
         )
+
 
 class HiraganaAnswerModelForm(forms.ModelForm):
     class Meta:
@@ -16,4 +17,13 @@ class HiraganaAnswerModelForm(forms.ModelForm):
             'answer_text',
         )
 
+
+class PlayerModelForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = (
+            'user',
+            'level',
+            'xp',
+        )
 
