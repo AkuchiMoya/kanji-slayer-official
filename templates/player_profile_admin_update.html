@@ -10,7 +10,7 @@
     </head>
     <body>
         <h2>Staff Only - Update this player</h2>
-        <a href="/players">Go back to all players</a>
+        <a href="{% url 'quizgame:player-list-page' %}">Go back to all players</a>
         <h2>{{ player }}</h2>
         <form method="post">
             {% csrf_token %}

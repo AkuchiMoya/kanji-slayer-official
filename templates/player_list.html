@@ -23,8 +23,8 @@
         <h2>Kanji Slayer Player Listing</h2>
             {% for player in players %}
             <div class="player">
-            <a href="/players/{{ player.pk }}">{{ player }}</a>
-            <a href="/players/{{ player.pk }}/adminedit">Admin only: Edit player</a>
+            <a href="{% url 'quizgame:player-profile-page' player.pk %}">{{ player }}</a>
+            <a href="{% url 'quizgame:player-profile-admin-update' player.pk %}">Admin only: Edit player</a>
             Level: {{ player.level }}
             XP: {{ player.xp }}
             </div>
