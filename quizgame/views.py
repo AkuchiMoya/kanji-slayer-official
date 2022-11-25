@@ -1,11 +1,49 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
-from .models import Player, HiraganaAnswer, HiraganaQuestion
+from django.views.generic import TemplateView, ListView, CreateView, DeleteView
+from .models import Player, HiraganaAnswer
 from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm, PlayerModelForm
 
+# CRUD - Create, Retreive, Update, Delete + List
 
-def home_page(request):
-    return render(request, "home_page.html")
+class LandingPageView(TemplateView):
+    template_name = "landing.html"
+
+
+class HiraganaAnswerListView(ListView):
+    template_name = "hiragana_list.html"
+    queryset = HiraganaAnswer.objects.all()
+    context_object_name = "hiragana"
+
+
+class HiraganaQuestionCreateView(CreateView):
+    template_name = "hiragana_create_question.html"
+    form_class = HiraganaQuestionModelForm
+    
+    def get_success_url(self):
+        return reverse("quizgame:home-page")
+
+
+class HiraganaAnswerCreateView(CreateView):
+    template_name = "hiragana_create_answer.html"
+    form_class = HiraganaAnswerModelForm
+
+    def get_success_url(self):
+        return reverse("quizgame:home-page")
+
+
+class HiraganaAnswerDeleteView(DeleteView):
+    template_name = "hiragana_delete_answer.html"
+    queryset = HiraganaAnswer.objects.all()
+
+    def get_success_url(self):
+        return reverse("quizgame:home-page")
+
+
+def hiragana_delete(request, pk):
+    hiragana_to_delete = HiraganaAnswer.objects.get(hiragana_question_id=pk)
+    hiragana_to_delete.delete()
+    return redirect("/hiragana")
 
 
 def player_list_page(request):
@@ -37,43 +75,3 @@ def player_profile_admin_update(request, pk):
         "player": player,
     }
     return render(request, "player_profile_admin_update.html", context)
-
-
-def hiragana_list_page(request):
-    hiragana = HiraganaAnswer.objects.all()
-    context = {
-        "hiragana": hiragana
-    }
-    return render(request, "hiragana_questions.html", context)
-
-
-def hiragana_create_question(request):
-    form = HiraganaQuestionModelForm()
-    if request.method == "POST":
-        form = HiraganaQuestionModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/hiragana")
-    context = {
-        "form": form
-    }
-    return render(request, "hiragana_create_question.html", context)
-
-
-def hiragana_create_answer(request):
-    form = HiraganaAnswerModelForm()
-    if request.method == "POST":
-        form = HiraganaAnswerModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/hiragana")
-    context = {
-        "form": form
-    }
-    return render(request, "hiragana_create_answer.html", context)
-
-
-def hiragana_delete(request, pk):
-    hiragana_to_delete = HiraganaAnswer.objects.get(hiragana_question_id=pk)
-    hiragana_to_delete.delete()
-    return redirect("/hiragana")

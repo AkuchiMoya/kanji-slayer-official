@@ -2,7 +2,7 @@
 
 {% block content %}
     <a href="{% url 'quizgame:home-page' %}">Go back to Hiragana questions list</a>
-    <h2>Staff Only - Hiragana Answer Configuration</h2>
+    <h2>Are you sure you want to delete this?</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

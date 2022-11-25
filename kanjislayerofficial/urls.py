@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-
-from quizgame.views import home_page, player_list_page
+from quizgame.views import LandingPageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('quizgame.urls', namespace="quizgame"))
+    path('', LandingPageView.as_view(), name="landing-page"),
+    path('hiragana/', include('quizgame.urls', namespace="quizgame")),
 ]
