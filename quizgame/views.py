@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, DetailView, UpdateView
@@ -59,5 +60,14 @@ class PlayerUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("quizgame:player-list-page")
+
+    def form_valid(self, form):
+        send_mail(
+            subject="A player has been updated.",
+            message="Visit the website to see who was updated.",
+            from_email="test@test.com",
+            recipient_list=["test2@test.com"],
+        )
+        return super(PlayerUpdateView, self).form_valid(form)
 
 
