@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView, CreateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, DeleteView, DetailView, UpdateView
 from .models import Player, HiraganaAnswer
 from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm, PlayerModelForm
 
@@ -40,32 +40,24 @@ class HiraganaAnswerDeleteView(DeleteView):
         return reverse("quizgame:home-page")
 
 
-def player_list_page(request):
-    players = Player.objects.all()
-    context = {
-        "players": players
-    }
-    return render(request, "player_list.html", context)
+class PlayerListView(ListView):
+    template_name = "player_list.html"
+    queryset = Player.objects.all()
+    context_object_name = "players"
 
 
-def player_profile_page(request, pk):
-    player = Player.objects.get(id=pk)
-    context = {
-        "player": player
-    }
-    return render(request, "player_profile_page.html", context)
+class PlayerDetailView(DetailView):
+    template_name = "player_profile_page.html"
+    queryset = Player.objects.all()
+    context_object_name = "player"
 
 
-def player_profile_admin_update(request, pk):
-    player = Player.objects.get(id=pk)
-    form = PlayerModelForm(instance=player)
-    if request.method == "POST":
-        form = PlayerModelForm(request.POST, instance=player)
-        if form.is_valid():
-            form.save()
-            return redirect("/players")
-    context = {
-        "form": form,
-        "player": player,
-    }
-    return render(request, "player_profile_admin_update.html", context)
+class PlayerUpdateView(UpdateView):
+    template_name = "player_profile_admin_update.html"
+    queryset = Player.objects.all()
+    form_class = PlayerModelForm
+
+    def get_success_url(self):
+        return reverse("quizgame:player-list-page")
+
+

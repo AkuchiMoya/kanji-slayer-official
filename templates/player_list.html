@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Kanji Slayer Player Listing</h2>
+    <br>
+    <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-100 mb-10">Kanji Slayer Player Listing</h1>
     
-    {% for player in players %}
-    <div class="player">
-    <a href="{% url 'quizgame:player-profile-page' player.pk %}">{{ player }}</a>
-    <a href="{% url 'quizgame:player-profile-admin-update' player.pk %}">Admin only: Edit player</a>
-    Level: {{ player.level }}
-    XP: {{ player.xp }}
-    </div>
-    {% endfor %}
+
+    <section class="text-gray-200 body-font">
+        <div class="container px-5 py-10 mx-auto">
+            {% for player in players %}
+            <div class="player border border-gray-200">
+                {{ player }}
+                <a class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" href="{% url 'quizgame:player-profile-page' player.pk %}">Player Details</a>
+                <a class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" href="{% url 'quizgame:player-profile-admin-update' player.pk %}">Edit player</a>
+                Level: {{ player.level }}
+                XP: {{ player.xp }}
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock content %}
