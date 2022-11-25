@@ -40,12 +40,6 @@ class HiraganaAnswerDeleteView(DeleteView):
         return reverse("quizgame:home-page")
 
 
-def hiragana_delete(request, pk):
-    hiragana_to_delete = HiraganaAnswer.objects.get(hiragana_question_id=pk)
-    hiragana_to_delete.delete()
-    return redirect("/hiragana")
-
-
 def player_list_page(request):
     players = Player.objects.all()
     context = {

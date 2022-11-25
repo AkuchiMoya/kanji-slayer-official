@@ -16,7 +16,7 @@ class Player(models.Model):
 
 
 class HiraganaQuestion(models.Model):
-    question_text = models.CharField(max_length=20)
+    question_text = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return self.question_text
@@ -24,7 +24,7 @@ class HiraganaQuestion(models.Model):
 
 class HiraganaAnswer(models.Model):
     hiragana_question = models.OneToOneField(HiraganaQuestion, on_delete=models.CASCADE, primary_key=True)
-    answer_text = models.CharField(max_length=20)
+    answer_text = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return self.answer_text
