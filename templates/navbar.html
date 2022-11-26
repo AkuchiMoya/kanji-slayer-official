@@ -11,7 +11,7 @@
         Logged in as {{ request.user.username }}
         <a href="{% url 'logout' %}" class="ml-3 mr-5 hover:text-white">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}" class="mr-5 hover:text-white">Sign Up</a>
+        <a href="{% url 'signup' %}" class="mr-5 hover:text-white">Sign Up</a>
         <a href="{% url 'login' %}" class="mr-5 hover:text-white">Login</a>
         {% endif %}
       </nav>

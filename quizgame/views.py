@@ -3,9 +3,17 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, DetailView, UpdateView
 from .models import Player, HiraganaAnswer
-from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm, PlayerModelForm
+from .forms import HiraganaQuestionModelForm, HiraganaAnswerModelForm, PlayerModelForm, CustomUserCreationForm
 
 # CRUD - Create, Retreive, Update, Delete + List
+
+class SignupView(CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserCreationForm
+    
+    def get_success_url(self):
+        return reverse("login")
+
 
 class LandingPageView(TemplateView):
     template_name = "landing.html"
