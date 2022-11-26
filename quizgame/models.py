@@ -16,6 +16,7 @@ class UserProfile(models.Model):
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_content_contributor = models.BooleanField(default=False)
     level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
 
