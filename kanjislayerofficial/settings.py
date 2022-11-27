@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps:
     'quizgame',
+
+    # Third party apps:
+    'crispy_forms',
+    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -131,3 +137,7 @@ AUTH_USER_MODEL = 'quizgame.User'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/hiragana'
 LOGIN_URL = '/login'
+
+# 3rd party app settings:
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
