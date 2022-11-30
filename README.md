@@ -1,4 +1,7 @@
 # kanji-slayer-official
+
+Kanji Slayer Discord Server: https://discord.gg/DYx34BBdsM
+
 Kanji Slayer, the #1 Japanese learning RPG.
 
 Project setup:
