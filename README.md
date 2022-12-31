@@ -33,9 +33,6 @@ Information about some of the base files in this project:
 - settings.py this is a hub of settings to configure things like database connections, where your templates are, etc. Need to hide the SECRET_KEY when you move to production. Also need to turn DEBUG to false in this file when you move to production. ALLOWED_HOSTS is where you add domain names when you host a  Django server in production. INSTALLED_APPS is where you add additional apps. MIDDLEWARE you probably won't touch. In TEMPLATES the most important part is DIRS, you would need to specify folders for you templates there. WSGI_APPLICATION this points to the wsgi file by default. DATABASES is where you set up your database configuration, so when you go to production and use Postgres, you will configure it here. By default it's pointing to the sqlite3 database. AUTH_PASSWORD_VALIDATORS checks for user's passwords for some common security issues. TIME_ZONE can be configured. STATIC_URL is just the URL that stores your static files for things like JS, images, etc. 
 - manage.py you don't mess with much, but allows you to execute commands through the command line. 
 
-How to create a django app, run the following command:
-- python manage.py startapp game
-
 App file information:
 - admin.py deals with the django admin, like when you need to make a model available in the admin panel. 
 - apps.py you won't mess with this at all
